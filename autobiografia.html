@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Personal</title>
+    <meta name="description" content="Página personal con información, galería y contacto.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Barra de progreso de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Cabecera -->
+    <header class="header">
+        <div class="clock-container" id="clock">
+            Cargando fecha y hora...
+        </div>
+        <div class="header-container">
+            <h1 class="header-logo">Mi Página</h1>
+            <p class="header-tagline">Página Personal</p>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">☰</button>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="autobiografia.html">Quién soy</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección de Hero/Bienvenida -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h2>Mi curriculum vitae</h2>
+                <p>Bienvenidos a mi página personal. Aquí encontrarás información acerca de mi persona, skills de mi carrera de ing software y más.</p>
+                <a href="contacto.html" class="cta-button">Contáctame</a>
+            </div>
+        </section>
+
+        <!-- Sección de Curriculum Vitae mejorada -->
+        <section id="cv" class="cv-card">
+            <header class="cv-header">
+                <h2 class="cv-title">GASPAR ALFREDO GIJON GIL</h2>
+                <p class="cv-subtitle">Joven innovador, líder y emprendedor con experiencia en la creación y supervisión de proyectos tecnológicos y sociales. Destaco por mi capacidad para desarrollar iniciativas de impacto comunitario, promover equidad de género y liderar equipos multidisciplinarios. Con reconocimiento a nivel nacional e internacional en liderazgo y compromiso con el desarrollo sostenible.</p>
+            </header>
+            <div class="cv-contact">
+                <span><strong>Ubicación:</strong> Sucilá, Yucatán, México</span> |
+                <span><strong>Email:</strong> <a href="mailto:gijongaspar31@gmail.com">gijongaspar31@gmail.com</a></span> |
+                <span><strong>Tel:</strong> (+52) 986 593 9093</span> |
+                <span><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/gaspar-gijon">Gaspar Gijon</a></span>
+            </div>
+            <section class="cv-section">
+                <h3>Logros y Reconocimientos</h3>
+                <ul>
+                    <li>Líder Latinoamericano | Latin American Leadership Academy (2022 - Presente)</li>
+                    <li>Distinción Mención Honorífica en Liderazgo | Presea Bernardo Quintana Arrioja</li>
+                    <li>Reconocimiento por Innovación | Ayuntamiento de Tizimín (2022)</li>
+                    <li>Primer Lugar en Cuadro de Honor | CONALEP (2021 - 2022)</li>
+                </ul>
+            </section>
+            <section class="cv-section">
+                <h3>Experiencia Profesional</h3>
+                <div class="cv-item">
+                    <div class="cv-item-header">
+                        <span class="cv-item-title">Fundador y Director | Waálmeek</span>
+                        <span class="cv-item-date">2022 – Presente</span>
+                    </div>
+                    <ul>
+                        <li>Emprendimiento social especializado en productos papercraft 3D y joyería artesanal con materiales reciclados (PET).</li>
+                        <li>Impartición de talleres para fomentar creatividad y pensamiento espacial.</li>
+                        <li>Lema: "Doblamos tu imaginación".</li>
+                    </ul>
+                </div>
+                <div class="cv-item">
+                    <div class="cv-item-header">
+                        <span class="cv-item-title">Empleado | Tienda de tecnología y accesorios</span>
+                        <span class="cv-item-date">2020 - 2022</span>
+                    </div>
+                    <ul>
+                        <li>Atención al cliente y asesoría en la venta de productos tecnológicos.</li>
+                        <li>Gestión de inventarios y mantenimiento de equipos de cómputo.</li>
+                    </ul>
+                </div>
+                <div class="cv-item">
+                    <div class="cv-item-header">
+                        <span class="cv-item-title">Guía e Instructor | Latin American Leadership Academy (LALA)</span>
+                        <span class="cv-item-date">2022 – Presente</span>
+                    </div>
+                    <ul>
+                        <li>Facilitación de talleres de liderazgo para jóvenes latinoamericanos.</li>
+                        <li>Mentoría en desarrollo personal y trabajo colaborativo.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="cv-section">
+                <h3>Educación</h3>
+                <div class="cv-item">
+                    <div class="cv-item-header">
+                        <span class="cv-item-title">Licenciatura en Ingeniería de Software | UADY, Tizimín</span>
+                        <span class="cv-item-date">2023 – Presente</span>
+                    </div>
+                    <ul>
+                        <li>Promedio: 89 / 100</li>
+                        <li>Asignaturas libres: Equidad de Género, Cultura Maya, Ciudadanía Digital.</li>
+                    </ul>
+                </div>
+                <div class="cv-item">
+                    <div class="cv-item-header">
+                        <span class="cv-item-title">Profesional Técnico Bachiller | CONALEP 164 Tizimín</span>
+                        <span class="cv-item-date">2020 - 2023</span>
+                    </div>
+                    <ul>
+                        <li>Mención Honorífica en Liderazgo (Presea Bernardo Quintana Arrioja).</li>
+                        <li>Reconocimiento estatal por alto desempeño académico.</li>
+                        <li>Agente de cambio.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="cv-section">
+                <h3>Proyectos Clave</h3>
+                <ul>
+                    <li><strong>CONAHELP (2022 – Presente):</strong> Plataforma de apoyo comunitario y equidad de género con códigos QR para denuncias anónimas.</li>
+                    <li><strong>Vive en Violeta (2022):</strong> Herramienta tecnológica para denuncias anónimas de violencia de género.</li>
+                    <li><strong>Proyecto ISA (2022 – 2023):</strong> Sistema para optimizar organización en aulas educativas.</li>
+                </ul>
+            </section>
+            <section class="cv-section">
+                <h3>Habilidades</h3>
+                <div class="cv-skills">
+                    <div>
+                        <strong>Técnicas:</strong>
+                        <ul>
+                            <li>Programación</li>
+                            <li>Diseño 3D</li>
+                            <li>Microsoft 365 (Excel avanzado: tablas dinámicas, macros)</li>
+                            <li>Robótica</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Blandas:</strong>
+                        <ul>
+                            <li>Liderazgo</li>
+                            <li>Oratoria</li>
+                            <li>Trabajo en equipo</li>
+                            <li>Activismo social</li>
+                            <li>Tolerancia</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Idiomas:</strong>
+                        <ul>
+                            <li>Español (nativo)</li>
+                            <li>Inglés (intermedio)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+<!-- Sección del Editor Interactivo -->
+        <section id="editor-interactivo" class="editor-section">
+            <h2>EDITOR INTERACTIVO</h2>
+            <div class="editor-container">
+                <div class="toolbar">
+                    <button onclick="formatText('bold')"><b>Negrita</b></button>
+                    <button onclick="formatText('italic')"><i>Cursiva</i></button>
+                    <button onclick="formatText('underline')"><u>Subrayado</u></button>
+                    <button onclick="formatText('h2')">Título H2</button>
+                    <button onclick="formatText('h3')">Título H3</button>
+                    <button onclick="formatText('p')">Párrafo</button>
+                    <button onclick="clearText()">Limpiar</button>
+                </div>
+                <textarea id="editor" placeholder="Escribe o edita tu contenido aquí...">¡Hola! Soy **Gaspar Alfredo Gijon Gil**, un joven innovador, líder y emprendedor con experiencia en tecnología y proyectos sociales.
+
+## Mi Historia
+Soy estudiante de *Ingeniería de Software* en la UADY, Tizimín, con un promedio de **89/100**. Mi pasión por la tecnología y el liderazgo me ha llevado a crear impacto tanto a nivel local como internacional.
+
+## Emprendimientos
+### **Waálmeek** (2022 – Presente)
+- Emprendimiento social especializado en productos papercraft 3D
+- Joyería artesanal con materiales reciclados (PET)
+- Lema: *"Doblamos tu imaginación"*
+
+## Proyectos de Impacto Social
+- **CONAHELP**: Plataforma de apoyo comunitario y equidad de género
+- **Vive en Violeta**: Herramienta tecnológica para denuncias anónimas
+- **Proyecto ISA**: Sistema para optimizar organización en aulas educativas
+
+## Reconocimientos
+- 🏆 Líder Latinoamericano | Latin American Leadership Academy
+- 🎖️ Distinción Mención Honorífica en Liderazgo
+- 🥇 Primer Lugar en Cuadro de Honor | CONALEP
+
+## Habilidades Técnicas
+- **Programación** y desarrollo web
+- **Diseño 3D** y robótica
+- **Microsoft 365** (Excel avanzado: tablas dinámicas, macros)
+
+## Valores
+Mi compromiso con la **equidad de género**, el **activismo social** y el **desarrollo sostenible** guía cada proyecto que emprendo. Creo firmemente en el poder transformador de la tecnología y el liderazgo colaborativo.</textarea>
+                <div class="preview">
+                    <h3>Vista Previa</h3>
+                    <div id="previewContent"></div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Pie de Página -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p><strong>Correo:</strong> <a href="mailto:gijongaspar31@gmail.com">gijongaspar31@gmail.com</a></p>
+                <p><strong>Ubicación:</strong> Tizimín, Yucatán</p>
+                <p><strong>Fecha:</strong> 20 de Agosto, 2025</p>
+            </div>
+            <div class="footer-privacy">
+                <p>&copy; 2025 Mi Página Personal. <a href="politica-privacidad.html">Política de Privacidad</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>

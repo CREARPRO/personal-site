@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Personal</title>
+    <meta name="description" content="Página personal con información, galería y contacto.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Barra de progreso de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Cabecera -->
+    <header class="header">
+        <div class="clock-container" id="clock">
+            Cargando fecha y hora...
+        </div>
+        <div class="header-container">
+            <h1 class="header-logo">Mi Página</h1>
+            <p class="header-tagline">Página Personal</p>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">☰</button>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="autobiografia.html">Quién soy</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección de Hero/Bienvenida -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h2>BIENVENIDO/A</h2>
+                <p>Bienvenidos a mi página personal. Aquí encontrarás información acerca de mi persona, algunas imágenes y una sección de contacto.</p>
+                <a href="contacto.html" class="cta-button">Contáctame</a>
+            </div>
+        </section>
+
+        <!-- sección "Novedades" -->
+        <section id="novedades">
+            <h2>NOVEDADES</h2>
+            <article class="blog-post">
+                <h3>Actualización</h3>
+                <p>Sección de biografía y galería disponible para conocer más sobre mí. He añadido nuevas herramientas interactivas como la calculadora de divisas y un cuestionario para que puedas interactuar con el contenido de forma dinámica.</p>
+            </article>
+            <article class="blog-post">
+                <h3>Nuevo Contenido</h3>
+                <p>La galería ha sido actualizada con nuevas imágenes y videos animados. Además, el editor de texto en la sección "¿Quién Soy?" te permite ver cómo se construye mi currículum de forma interactiva.</p>
+            </article>
+        </section>
+
+        <!-- sección "Eventos" -->
+        <section id="eventos">
+            <h2>INTERESES</h2>
+            <article class="event-post">
+                <h3>Proyectos Personales</h3>
+                <p>Explora mis proyectos, aprendizajes y colaboraciones en tecnología y liderazgo. Actualmente estoy trabajando en inteligencia artificial aplicada a la educación y desarrollo web moderno con las últimas tecnologías.</p>
+            </article>
+            <article class="event-post">
+                <h3>Desarrollo Profesional</h3>
+                <p>Participación en hackathons, conferencias tecnológicas y programas de mentoría. Siempre en busca de nuevos desafíos que me permitan crecer profesionalmente y aportar valor a la comunidad.</p>
+            </article>
+        </section>
+
+        <!-- Sección "Herramientas" -->
+        <section id="herramientas" class="tools-section">
+            <h2>HERRAMIENTAS</h2>
+            
+            <div class="tools-container">
+                <!-- Calculadora de Divisas -->
+                    <div class="calculator-container">
+                        <h3 class="calculator-title">Conversor de Divisas</h3>
+                        <div class="calculator-form">
+                            <div class="calculator-inputs">
+                                <div class="form-group">
+                                    <label for="amount">Cantidad:</label>
+                                    <input type="number" id="amount" placeholder="Ingresa la cantidad" step="0.01" min="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fromCurrency">De:</label>
+                                    <select id="fromCurrency">
+                                        <option value="USD">Dólar Estadounidense (USD)</option>
+                                        <option value="EUR">Euro (EUR)</option>
+                                        <option value="MXN" selected>Peso Mexicano (MXN)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="calculator-inputs">
+                                <div class="form-group">
+                                    <label for="toCurrency">A:</label>
+                                    <select id="toCurrency">
+                                        <option value="MXN" selected>Peso Mexicano (MXN)</option>
+                                        <option value="USD">Dólar Estadounidense (USD)</option>
+                                        <option value="EUR">Euro (EUR)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="result">Resultado:</label>
+                                    <div class="result" id="conversionResult">0.00 MXN</div>
+                                </div>
+                            </div>
+                            <button class="submit-btn" onclick="convertCurrency()">Convertir</button>
+                        </div>
+                    </div>
+
+                    <!-- Cuestionario Interactivo -->
+                    <div class="quiz-container">
+                        <h3 class="calculator-title">Cuestionario Interactivo</h3>
+                        <div id="quizContent">
+                            <div class="quiz-question">
+                                <h4>1. ¿Qué lenguaje es fundamental para el desarrollo web frontend?</h4>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" onclick="selectOption(this, 'a')">Java</div>
+                                    <div class="quiz-option" onclick="selectOption(this, 'b')">Python</div>
+                                    <div class="quiz-option" onclick="selectOption(this, 'c')">JavaScript</div>
+                                    <div class="quiz-option" onclick="selectOption(this, 'd')">C++</div>
+                                </div>
+                            </div>
+                            <div class="quiz-question">
+                                <h4>2. ¿Qué tecnología se utiliza para estilos en páginas web?</h4>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" onclick="selectOption(this, 'a')">HTML</div>
+                                    <div class="quiz-option" onclick="selectOption(this, 'b')">CSS</div>
+                                    <div class="quiz-option" onclick="selectOption(this, 'c')">PHP</div>
+                                    <div class="quiz-option" onclick="selectOption(this, 'd')">SQL</div>
+                                </div>
+                            </div>
+                            <div class="quiz-question">
+                                <h4>3. ¿Qué framework de JavaScript es muy popular para interfaces de usuario?</h4>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" onclick="selectOption(this, 'a')">Django</div>
+                                    <div class="quiz-option" onclick="selectOption(this, 'b')">Laravel</div>
+                                    <div class="quiz-option" onclick="selectOption(this, 'c')">React</div>
+                                    <div class="quiz-option" onclick="selectOption(this, 'd')">Spring</div>
+                                </div>
+                            </div>
+                            <button class="quiz-btn" onclick="checkAnswers()">Ver Resultados</button>
+                        </div>
+                        <div class="quiz-results" id="quizResults">
+                            <div class="quiz-score" id="score">0/3</div>
+                            <p id="quizMessage">¡Gracias por participar!</p>
+                            <button class="quiz-btn" onclick="resetQuiz()">Reiniciar Cuestionario</button>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p><strong>Correo:</strong> <a href="mailto:gijongaspar31@gmail.com">gijongaspar31@gmail.com</a></p>
+                <p><strong>Ubicación:</strong> Tizimín, Yucatán</p>
+                <p><strong>Fecha:</strong> 20 de Agosto, 2025</p>
+            </div>
+            <div class="footer-privacy">
+                <p>&copy; 2025 Mi Página Personal. <a href="politica-privacidad.html">Política de Privacidad</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Sistema de Cookies -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <h3>🍪 ¡Usamos cookies para mejorar tu experiencia!</h3>
+                <p>Utilizamos cookies esenciales y opcionales para personalizar tu visita, recordar tus preferencias y analizar el uso del sitio. ¿Aceptas nuestras cookies?</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" onclick="acceptAllCookies()">✅ Aceptar todo</button>
+                <button class="cookie-btn customize" onclick="showCookiePreferences()">⚙️ Personalizar</button>
+                <button class="cookie-btn reject" onclick="rejectAllCookies()">❌ Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Preferencias de Cookies -->
+    <div id="cookie-modal" class="cookie-modal">
+        <div class="cookie-modal-content">
+            <button class="cookie-close" onclick="closeCookieModal()">&times;</button>
+            <h2>🛠️ Preferencias de Cookies</h2>
+            
+            <div class="cookie-category required">
+                <h3>
+                    🔧 Cookies Esenciales
+                    <label class="cookie-toggle">
+                        <input type="checkbox" checked disabled>
+                        <span class="cookie-slider"></span>
+                    </label>
+                </h3>
+                <p>Estas cookies son necesarias para el funcionamiento básico del sitio web y no se pueden desactivar.</p>
+            </div>
+            
+            <div class="cookie-category">
+                <h3>
+                    📊 Cookies de Análisis
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="analytics-cookies">
+                        <span class="cookie-slider"></span>
+                    </label>
+                </h3>
+                <p>Nos ayudan a entender cómo interactúas con nuestro sitio web, recopilando información de forma anónima.</p>
+            </div>
+            
+            <div class="cookie-category">
+                <h3>
+                    🎨 Cookies de Personalización
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="personalization-cookies">
+                        <span class="cookie-slider"></span>
+                    </label>
+                </h3>
+                <p>Permiten recordar tus preferencias (como el tema, idioma) para ofrecerte una experiencia personalizada.</p>
+            </div>
+            
+            <div class="cookie-category">
+                <h3>
+                    📈 Cookies de Funcionalidad
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="functionality-cookies">
+                        <span class="cookie-slider"></span>
+                    </label>
+                </h3>
+                <p>Habilitan funciones avanzadas como recordar tu progreso, configuraciones del usuario y características interactivas.</p>
+            </div>
+            
+            <div class="cookie-modal-buttons">
+                <button class="cookie-btn accept" onclick="saveCustomPreferences()">💾 Guardar Preferencias</button>
+                <button class="cookie-btn reject" onclick="closeCookieModal()">❌ Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indicador de Estado de Cookies -->
+    <div id="cookie-status" class="cookie-status" onclick="showCookiePreferences()" style="display: none;">
+        🍪 Gestionar Cookies
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+
