@@ -7,7 +7,7 @@ Sitio web personal completo y moderno con funcionalidades interactivas, diseño 
 
 ### 🏠 Páginas Principales
 - **Inicio** - Página principal con herramientas interactivas
-- **Quién Soy** - Biografía con editor de texto en tiempo real
+- **Quién Soy** - curriculum vitae con editor de texto en tiempo real
 - **Galería** - Multimedia con imágenes, videos y audio
 - **Contacto** - Formulario completo con validación
 - **Política de Privacidad** - Gestión transparente de datos
