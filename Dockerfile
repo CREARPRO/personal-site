@@ -1,5 +1,8 @@
 FROM php:8.1-apache
 
+# Instalar extensiones PHP necesarias (PDO MySQL)
+RUN docker-php-ext-install pdo pdo_mysql
+
 # Copiar código al directorio por defecto de Apache
 WORKDIR /var/www/html
 COPY . /var/www/html/
