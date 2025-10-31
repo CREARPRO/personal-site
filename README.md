@@ -52,6 +52,74 @@ sitioweb/
 
 ## 🚀 Instalación y Uso
 
+### ✅ Nuevo módulo: Gestión de usuarios (PHP + MySQL/MariaDB)
+
+Se añadió un módulo completo para la gestión de usuarios usando PHP y MySQL/MariaDB. Está pensado para desarrollarse y probarse localmente con XAMPP (o cualquier stack LAMP) y también para desplegarse en Render como Web Service usando Docker.
+
+Archivos añadidos:
+- `api/` - Endpoints PHP: `db.php`, `register.php`, `login.php`, `list.php`, `update.php`, `delete.php`
+- `users.html` - Interfaz administrativa (frontend) con validaciones JS
+- `js/users.js` - Lógica de fetch y validación (contraseña/re-contraseña)
+- `css/users.css` - Estilos para la interfaz de usuarios
+- `users.sql` - Script SQL para crear la base de datos y tabla `users`
+- `Dockerfile` - Contenedor Apache+PHP para desplegar como Web Service en Render
+
+### 📌 Requisitos locales (XAMPP / MariaDB / MySQL)
+
+1. Instala XAMPP o tu stack preferido.
+2. Importa `users.sql` en phpMyAdmin o usando la consola MySQL:
+
+```bash
+mysql -u root -p < users.sql
+```
+
+3. Copia los archivos a la carpeta pública de tu servidor (por ejemplo `htdocs/sitioweb`).
+4. Asegúrate de configurar la conexión de BD en `api/db.php` o mediante variables de entorno (en local puedes dejar `DB_USER=root`, `DB_PASS=` si usas XAMPP):
+
+```php
+// api/db.php lee estas variables de entorno por defecto
+DB_HOST=127.0.0.1
+DB_NAME=personal_site
+DB_USER=root
+DB_PASS=
+DB_PORT=3306
+```
+
+5. Abrir en el navegador `http://localhost/sitioweb/users.html` para probar el registro, login y CRUD de usuarios.
+
+### ☁️ Despliegue en Render (Web Service con Docker)
+
+Render no provee MySQL gestionado en todos los planes; por ello debes usar una base de datos MySQL externa (por ejemplo PlanetScale, ClearDB o cualquier proveedor MySQL remoto). Recomendación gratuita: PlanetScale (MySQL-compatible).
+
+Pasos resumidos:
+1. Subir el repo a GitHub (ya está en `CREARPRO/personal-site`).
+2. Crear la base de datos en el proveedor MySQL y obtener host, usuario, contraseña y puerto.
+3. En Render crear un nuevo **Web Service** usando tu repo y seleccionar **Docker** (Render detectará `Dockerfile`).
+4. En la configuración de Service, añade las variables de entorno en Render:
+
+```
+DB_HOST=tu_host_mysql
+DB_NAME=personal_site
+DB_USER=tu_usuario
+DB_PASS=tu_password
+DB_PORT=3306
+```
+
+5. Build Command: (no es necesario con Dockerfile)
+6. Start Command: (no es necesario con Dockerfile)
+7. Deploy. El contenedor ejecutará Apache+PHP y las rutas `api/*.php` estarán accesibles.
+
+### 🔐 Seguridad y notas
+- Nunca pongas credenciales en el repo. Usa variables de entorno en Render.
+- Cambia el valor de `DB_PASS` y utiliza contraseñas seguras en producción.
+- Las contraseñas se almacenan con `password_hash()` y el login usa `password_verify()`.
+
+### ✅ Verificar funcionalidad en línea
+
+1. Crea la BD y ejecuta `users.sql` en tu servicio MySQL remoto (PlanetScale o similar).
+2. Asegúrate de que las variables de entorno en Render apunten a esa BD.
+3. Accede a `https://<tu-servicio>.onrender.com/users.html` y prueba: registrar, iniciar sesión, editar y eliminar usuarios.
+
 ### 🌐 Hosting con Render (Método Utilizado)
 
 Este proyecto está alojado en **Render**, una plataforma moderna de hosting que ofrece despliegue gratuito y automático desde repositorios de GitHub.

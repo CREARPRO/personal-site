@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Usuarios</title>
+  <link rel="stylesheet" href="css/users.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Gestión de Usuarios</h1>
+
+    <section id="auth">
+      <div class="card">
+        <h2>Registrarse</h2>
+        <form id="registerForm">
+          <input name="name" placeholder="Nombre" required />
+          <input name="email" type="email" placeholder="Correo" required />
+          <input name="password" type="password" placeholder="Contraseña" required />
+          <input name="password2" type="password" placeholder="Repetir Contraseña" required />
+          <button type="submit">Registrar</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+          <input name="email" type="email" placeholder="Correo" required />
+          <input name="password" type="password" placeholder="Contraseña" required />
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="admin" style="display:none;">
+      <h2>Usuarios</h2>
+      <table id="usersTable">
+        <thead><tr><th>ID</th><th>Nombre</th><th>Email</th><th>Acciones</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="card">
+        <h3>Editar / Crear Usuario</h3>
+        <form id="editForm">
+          <input type="hidden" name="id" />
+          <input name="name" placeholder="Nombre" required />
+          <input name="email" type="email" placeholder="Correo" required />
+          <input name="password" type="password" placeholder="Contraseña (opcional)" />
+          <input name="password2" type="password" placeholder="Repetir Contraseña" />
+          <button type="submit">Guardar</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+  <script src="js/users.js"></script>
+</body>
+</html>

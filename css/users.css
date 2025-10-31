@@ -1,0 +1,11 @@
+/* css/users.css - styles for the users admin page (minimal) */
+:root{--bg:#f4f6fb;--card:#ffffff;--accent:#0066cc;--muted:#666}
+body{font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#222;margin:0;padding:24px}
+.container{max-width:980px;margin:0 auto}
+h1{margin:0 0 18px}
+.card{background:var(--card);padding:16px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.06);margin-bottom:12px}
+form input{display:block;width:100%;padding:10px;margin:8px 0;border:1px solid #ddd;border-radius:6px}
+button{background:var(--accent);color:white;border:none;padding:10px 14px;border-radius:6px;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th,td{padding:8px;border-bottom:1px solid #eee;text-align:left}
+th{background:#fafafa;color:var(--muted)}
