@@ -57,12 +57,45 @@ sitioweb/
 Se añadió un módulo completo para la gestión de usuarios usando PHP y MySQL/MariaDB. Está pensado para desarrollarse y probarse localmente con XAMPP (o cualquier stack LAMP) y también para desplegarse en Render como Web Service usando Docker.
 
 Archivos añadidos:
-- `api/` - Endpoints PHP: `db.php`, `register.php`, `login.php`, `list.php`, `update.php`, `delete.php`
+- `api/` - Endpoints PHP: `db.php`, `register.php`, `login.php`, `list.php`, `update.php`, `delete.php`, `check_session.php`, `logout.php`, `save_contact.php`
 - `users.html` - Interfaz administrativa (frontend) con validaciones JS
 - `js/users.js` - Lógica de fetch y validación (contraseña/re-contraseña)
 - `css/users.css` - Estilos para la interfaz de usuarios
-- `users.sql` - Script SQL para crear la base de datos y tabla `users`
+- `css/login-modal.css` - Estilos neumórficos para el modal de login
+- `users.sql` - Script SQL para crear la base de datos, tablas `users` y `contactos`
 - `Dockerfile` - Contenedor Apache+PHP para desplegar como Web Service en Render
+
+### 🔑 Modal de Login Neumórfico
+
+Se integró un **modal de login con diseño neumórfico** accesible desde el menú de navegación en todas las páginas del sitio:
+
+**Características:**
+- ✨ Diseño neumórfico moderno (sombras internas/externas)
+- 🎨 Integración con Boxicons para íconos
+- 📱 Responsive (móvil, tablet, desktop)
+- 🔒 Conexión directa con `api/login.php`
+- ✅ Validación de sesión en tiempo real
+- 🚪 Redirección automática al panel de administración tras login exitoso
+
+**Ubicación:** Botón "Iniciar Sesión" en el nav de todas las páginas (`index.html`, `autobiografia.html`, `galeria.html`, `contacto.html`)
+
+### 📨 Formulario de Contacto con Base de Datos
+
+El formulario de contacto ahora guarda los mensajes directamente en la base de datos MySQL:
+
+**Endpoint:** `api/save_contact.php`  
+**Tabla:** `contactos` (incluida en `users.sql`)  
+**Campos guardados:**
+- Nombre, email, teléfono
+- Género, preferencias de contacto
+- Asunto y mensaje
+- Fecha de creación (timestamp)
+
+**Funcionalidad:**
+- ✅ Envío asíncrono vía fetch (sin recargar página)
+- ✅ Validación de campos obligatorios
+- ✅ Mensajes de éxito/error en tiempo real
+- ✅ Integración con sistema de cookies (autoguardado si está habilitado)
 
 ### 📌 Requisitos locales (XAMPP / MariaDB / MySQL)
 
