@@ -1,12 +1,18 @@
 <?php
 require_once __DIR__ . '/db.php';
 session_start();
-
 $data = json_decode(file_get_contents('php://input'), true) ?? $_POST;
 $id = intval($data['id'] ?? 0);
 $name = trim($data['name'] ?? '');
 $email = trim($data['email'] ?? '');
 $password = $data['password'] ?? null;
+
+// Require auth for updates
+if (!isset($_SESSION['user_id'])) {
+    http_response_code(401);
+    echo json_encode(['error' => 'Unauthorized']);
+    exit;
+}
 
 if (!$id || !$name || !$email) {
     http_response_code(400);

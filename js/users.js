@@ -7,9 +7,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const editForm = document.getElementById('editForm');
   const usersTableBody = document.querySelector('#usersTable tbody');
   const adminSection = document.getElementById('admin');
+  const userBar = document.getElementById('userBar');
+  const userNameSpan = document.getElementById('userName');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  async function checkSession() {
+    try {
+      const res = await fetch(`${apiBase}/check_session.php`);
+      const data = await res.json();
+      if (data.logged) {
+        document.getElementById('auth').style.display = 'none';
+        adminSection.style.display = 'block';
+        userBar.style.display = 'block';
+        userNameSpan.textContent = `Conectado como: ${data.user.name || ''}`;
+        return true;
+      } else {
+        document.getElementById('auth').style.display = 'block';
+        adminSection.style.display = 'none';
+        userBar.style.display = 'none';
+        return false;
+      }
+    } catch (err) {
+      console.error('Session check failed', err);
+      return false;
+    }
+  }
 
   async function fetchUsers() {
     const res = await fetch(`${apiBase}/list.php`);
+    if (res.status === 401) {
+      // session expired or not authorized
+      await checkSession();
+      return;
+    }
     const data = await res.json();
     usersTableBody.innerHTML = '';
     (data.users || []).forEach(u => {
@@ -50,8 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = await res.json();
     if (res.ok) {
       showMessage('Login correcto');
-      document.getElementById('auth').style.display = 'none';
-      adminSection.style.display = 'block';
+      await checkSession();
       fetchUsers();
     } else {
       showMessage(data.error || 'Login falló');
@@ -73,6 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (password) payload.password = password;
     const url = id ? `${apiBase}/update.php` : `${apiBase}/register.php`;
     const res = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    if (res.status === 401) {
+      await checkSession();
+      showMessage('No autorizado');
+      return;
+    }
     const data = await res.json();
     if (res.ok) { showMessage('Guardado'); f.reset(); fetchUsers(); }
     else showMessage(data.error || 'Error');
@@ -93,11 +127,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!confirm('¿Eliminar este usuario?')) return;
     const id = e.target.dataset.id;
     const res = await fetch(`${apiBase}/delete.php`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id}) });
+    if (res.status === 401) { await checkSession(); showMessage('No autorizado'); return; }
     const data = await res.json();
     if (res.ok) { showMessage('Eliminado'); fetchUsers(); }
     else showMessage(data.error || 'Error');
   }
 
-  // initial state
-  fetchUsers();
+  logoutBtn.onclick = async () => {
+    await fetch(`${apiBase}/logout.php`);
+    await checkSession();
+  };
+
+  // initial state - check session then fetch
+  (async () => {
+    const ok = await checkSession();
+    if (ok) fetchUsers();
+  })();
 });
