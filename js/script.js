@@ -1067,3 +1067,120 @@ function showTemporaryIndicator(message) {
         setTimeout(() => indicator.remove(), 300);
     }, 2000);
 }
+
+// ==========================
+// LOGIN MODAL FUNCTIONALITY
+// ==========================
+function openLoginModal() {
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeLoginModal() {
+    const modal = document.getElementById('loginModal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+        const msgEl = document.getElementById('loginMessage');
+        if (msgEl) {
+            msgEl.textContent = '';
+            msgEl.className = 'login-message';
+        }
+    }
+}
+
+// Event listener for login nav button
+document.addEventListener('DOMContentLoaded', function() {
+    const loginNavBtn = document.getElementById('loginNavBtn');
+    if (loginNavBtn) {
+        loginNavBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openLoginModal();
+        });
+    }
+
+    // Login form submit
+    const loginForm = document.getElementById('loginModalForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const msgEl = document.getElementById('loginMessage');
+            const formData = new FormData(e.target);
+            const email = formData.get('email');
+            const password = formData.get('password');
+
+            try {
+                const res = await fetch('api/login.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({email, password})
+                });
+                const data = await res.json();
+                
+                if (res.ok && data.success) {
+                    msgEl.textContent = '✅ Login exitoso. Redirigiendo...';
+                    msgEl.className = 'login-message success show';
+                    setTimeout(() => {
+                        window.location.href = 'users.html';
+                    }, 1500);
+                } else {
+                    msgEl.textContent = '❌ ' + (data.error || 'Login falló');
+                    msgEl.className = 'login-message error show';
+                }
+            } catch (err) {
+                msgEl.textContent = '❌ Error de conexión';
+                msgEl.className = 'login-message error show';
+            }
+        });
+    }
+
+    // Contact form submit (save to DB)
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const msgEl = document.getElementById('contactFormMessage');
+            const formData = new FormData(e.target);
+            const payload = {
+                nombre: formData.get('nombre'),
+                email: formData.get('email'),
+                telefono: formData.get('telefono'),
+                genero: formData.get('genero'),
+                preferencia_contacto: formData.getAll('preferencia_contacto[]'),
+                asunto: formData.get('asunto'),
+                mensaje: formData.get('mensaje')
+            };
+
+            try {
+                const res = await fetch('api/save_contact.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                
+                if (res.ok && data.success) {
+                    msgEl.textContent = '✅ ' + (data.message || 'Mensaje enviado correctamente');
+                    msgEl.style.backgroundColor = '#d4edda';
+                    msgEl.style.color = '#155724';
+                    msgEl.style.display = 'block';
+                    contactForm.reset();
+                    setTimeout(() => { msgEl.style.display = 'none'; }, 5000);
+                } else {
+                    msgEl.textContent = '❌ ' + (data.error || 'Error al enviar mensaje');
+                    msgEl.style.backgroundColor = '#f8d7da';
+                    msgEl.style.color = '#721c24';
+                    msgEl.style.display = 'block';
+                }
+            } catch (err) {
+                msgEl.textContent = '❌ Error de conexión';
+                msgEl.style.backgroundColor = '#f8d7da';
+                msgEl.style.color = '#721c24';
+                msgEl.style.display = 'block';
+            }
+        });
+    }
+});

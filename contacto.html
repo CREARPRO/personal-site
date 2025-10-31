@@ -6,6 +6,8 @@
     <title>Página Personal</title>
     <meta name="description" content="Página personal con información, galería y contacto.">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login-modal.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Barra de progreso de scroll -->
@@ -27,10 +29,35 @@
                     <li><a href="autobiografia.html">Quién soy</a></li>
                     <li><a href="galeria.html">Galería</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="#" id="loginNavBtn">Iniciar Sesión</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <!-- Modal de Login Neumórfico -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-modal-overlay" onclick="closeLoginModal()"></div>
+        <div class="login-container">
+            <button class="login-close" onclick="closeLoginModal()">&times;</button>
+            <h1 class="login-title">LOGIN</h1>
+            <form id="loginModalForm">
+                <div class="login-input-group">
+                    <i class='bx bx-user'></i>
+                    <input type="email" name="email" placeholder="Correo electrónico" required>
+                </div>
+                <div class="login-input-group">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" name="password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="login-btn">LOGIN</button>
+                <div class="login-links">
+                    <a href="users.html">Panel de Administración</a>
+                </div>
+            </form>
+            <div id="loginMessage" class="login-message"></div>
+        </div>
+    </div>
 
     <main>
         <!-- Sección de Hero/Bienvenida -->
@@ -48,7 +75,7 @@
                 <p>Complete el siguiente formulario y me pondré en contacto con usted</p>
             </div>
             
-            <form action="procesa.php" method="post" class="contact-form">
+            <form id="contactForm" class="contact-form">
                     <!-- Información de contacto -->
                     <div class="form-section">
                         <h3 class="section-title">Información de Contacto</h3>
@@ -147,6 +174,7 @@
                         <button type="button" class="submit-btn info" onclick="loadDraft()">📄 Cargar Borrador</button>
                         <button type="submit" class="submit-btn">📨 Enviar Mensaje</button>
                     </div>
+                    <div id="contactFormMessage" style="margin-top:15px;padding:12px;border-radius:8px;display:none;text-align:center;"></div>
                 </form>
         </section>
 
