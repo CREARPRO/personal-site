@@ -73,25 +73,53 @@ Archivos clave recientes:
 ## 📁 Estructura del Proyecto
 ```
 sitioweb/
-├── index.html                  # Página principal
-├── autobiografia.html          # Biografía personal
-├── galeria.html               # Galería multimedia
-├── contacto.html              # Formulario de contacto
-├── politica-privacidad.html   # Política de privacidad
-├── test-funcionamiento.html   # Página de pruebas
+├── index.html                     # Página principal
+├── autobiografia.html             # Biografía personal
+├── galeria.html                   # Galería multimedia
+├── contacto.html                  # Formulario de contacto (persistencia en DB)
+├── politica-privacidad.html       # Política de privacidad
+├── users.html                     # Panel de administración (CRUD usuarios)
+├── healthz.php                    # Healthcheck para Render
+│
+├── api/                           # Endpoints PHP (backend)
+│   ├── db.php                     # Conexión PDO (usa variables de entorno)
+│   ├── register.php               # Registro de usuario
+│   ├── login.php                  # Login (inicia sesión)
+│   ├── list.php                   # Listado de usuarios (requiere sesión)
+│   ├── update.php                 # Actualizar usuario (requiere sesión)
+│   ├── delete.php                 # Eliminar usuario (requiere sesión)
+│   ├── check_session.php          # Verifica sesión
+│   ├── logout.php                 # Cierra sesión
+│   ├── save_contact.php           # Guarda mensajes del formulario de contacto
+│   └── health_db.php              # Healthcheck de base de datos
+│
 ├── css/
-│   └── style.css              # Estilos únicos y variables CSS
+│   ├── style.css                  # Estilos generales
+│   ├── login-modal.css            # Estilos del modal de login (neumorfismo)
+│   └── users.css                  # Estilos del panel de usuarios
+│
 ├── js/
-│   └── script.js              # JavaScript con todas las funcionalidades
+│   ├── script.js                  # Lógica del sitio y contacto (fetch → API)
+│   └── users.js                   # Lógica del CRUD en users.html
+│
 ├── multimedia/
 │   ├── 1.jpeg, 2.jpeg, 3.jpeg, 4.jpeg
 │   ├── logo.png, ABCUENTOS.png
-│   ├── furelise.mp3           # Audio de ejemplo
-│   └── universo.mp4           # Video de ejemplo
-├── README_COOKIES.md          # Documentación de cookies
-├── REPORTE_REVISION_SITIO.md  # Reporte completo de revisión
-└── README.md                  # Este archivo
+│   ├── furelise.mp3               # Audio de ejemplo
+│   └── universo.mp4               # Video de ejemplo
+│
+├── Dockerfile                     # Despliegue en Render (php:8.1-apache)
+├── Procfile                       # Opción alternativa histórica
+├── package.json                   # Opción alternativa (Node/Express)
+├── server.js                      # Opción alternativa (Node/Express)
+├── users.sql                      # Esquema original (crea BD `personal_site`)
+├── setup_defaultdb.sql            # Tablas para usar en Aiven `defaultdb`
+├── README_COOKIES.md              # Documentación de cookies
+├── REPORTE_REVISION_SITIO.md      # Reporte de revisión
+└── README.md                      # Este archivo
 ```
+
+Nota: Actualmente el despliegue en Render usa el `Dockerfile` (Apache+PHP). Los archivos `package.json`, `server.js` y `Procfile` quedan como alternativa/legado para un despliegue con Node/Express, pero no se usan en producción ahora.
 
 ## 🚀 Instalación y Uso
 
