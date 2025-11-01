@@ -3,6 +3,49 @@
 ## 📋 Descripción
 Sitio web personal completo y moderno con funcionalidades interactivas, diseño responsive y sistema avanzado de gestión de cookies.
 
+## ✅ Estado de despliegue y herramientas utilizadas (2025-10-31)
+
+Este proyecto está funcionando en producción con el siguiente stack:
+
+- Repositorio: GitHub → `CREARPRO/personal-site`
+- Servidor web: Render (Web Service con Docker; imagen base `php:8.1-apache`)
+- Base de datos en línea: Aiven MySQL (`defaultdb`)
+- Carga de tablas: MySQL Workbench (ejecutando `setup_defaultdb.sql` o el bloque de tablas)
+- Comportamiento de contacto: Guarda en tabla `contactos` (no envía email por ahora)
+
+Variables de entorno en Render (obligatorias):
+
+```
+DB_HOST = <host de Aiven>
+DB_PORT = <puerto de Aiven>
+DB_NAME = defaultdb
+DB_USER = avnadmin
+DB_PASS = <tu contraseña>
+DB_SSL_MODE = REQUIRED
+```
+
+Variables opcionales (si Aiven exige validar certificado):
+
+```
+DB_SSL_CA_B64 = <contenido Base64 de ca.pem>
+```
+
+Endpoints útiles para verificación:
+
+- `/healthz` → Salud de la app (ok)
+- `/api/health_db.php` → Salud de base de datos (JSON)
+- `/api/check_session.php` → Estado de sesión (JSON)
+- `/users.html` → Panel de administración (CRUD de usuarios)
+- `/contacto.html` → Formulario que persiste en `contactos`
+
+Archivos clave recientes:
+
+- `Dockerfile` → instala `pdo` y `pdo_mysql`
+- `api/db.php` → conexión PDO via env vars + soporte SSL (DB_SSL_MODE/DB_SSL_CA_B64)
+- `api/health_db.php` → verificación simple de conexión
+- `healthz.php` → healthcheck para Render
+- `setup_defaultdb.sql` → script de tablas para `defaultdb`
+
 ## ✨ Características
 
 ### 🏠 Páginas Principales
